@@ -1,0 +1,31 @@
+.filter-switch label {
+  cursor: pointer;
+}
+.filter-switch-item input:checked + label {
+  color: #000;
+  background-color: #f7971e;
+}
+.filter-switch-item input:not(:checked) + label {
+  --bg-opacity: 0;
+  box-shadow: none;
+}
+
+.filter-switch-item-applying input:checked + label {
+	color: inherit;
+	background-color: #000;
+  }
+  .filter-switch-item-applying input:not(:checked) + label {
+	--bg-opacity: 0;
+	box-shadow: none;
+  }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

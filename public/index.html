@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Favicon -->
+	<link rel="icon" href="/resources/images/favicon.ico">
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="/resources/css/tailwind.css">
+	<link rel="stylesheet" href="/resources/css/styles.css">
+
+	<title>Filter me, Daddy 😏</title>
+</head>
+<body class="flex flex-col justify-between h-full sm:h-screen w-full bg-black">
+	<header class="h-[100px] sm:h-[150px] py-4">
+		<div class="h-full w-full bg-[#1b1b1b] px-2 sm:px-8 text-white">
+			<img src="/resources/images/filter_me.svg" alt="Filter Me, Daddy Logo" class="h-full object-fit">
+		</div>
+	</header>
+	<div class="flex flex-col sm:flex-row items-center h-full w-full">
+
+		<div class="flex items-center justify-center w-full sm:w-1/2 h-full p-8">
+			<div class="flex flex-col items-center justify-center bg-[#1b1b1b] w-full sm:w-[600px] h-[400px] sm:h-[500px] rounded-[4px] relative transform hover:scale-[1.01] hover:shadow-2xl hover:border duration-200">
+				<input id="main-database-file" type="file" accept=".xlsx" class="cursor-pointer opacity-0 h-full w-full absolute">
+				<p id="placed-file-name" class="text-white text-base sm:text-2xl">Upload placed students' data</p>
+				<div class="flex flex-col items-center mt-8">
+					<div id="placed-filter-options" class="hidden filter-switch flex flex-wrap justify-center items-center relative p-1 font-semibold text-white">
+						<div class="z-50 flex items-center filter-switch-item flex relative h-8 my-2 border border-white">
+							<input type="radio" name="placed-filter" value="Name" id="placed-name" class="sr-only" checked>
+							<label for="placed-name" class="flex items-center justify-center px-[8px] py-[6px] text-xs sm:text-sm text-white hover:bg-black transition-colors duration-200">
+								Name
+							</label>
+						</div>
+						<div class="z-50 flex items-center filter-switch-item flex relative h-8 my-2 border border-white">
+							<input type="radio" name="placed-filter" value="Roll Number" class="sr-only" id="placed-roll-number">
+							<label for="placed-roll-number" class="flex items-center justify-center px-[8px] py-[6px] text-xs sm:text-sm text-white hover:bg-black transition-colors duration-200">
+								Roll Number
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="my-4 text-white h-[50px] whitespace-nowrap">
+			<p class="text-base sm:text-xl">Enter incoming company's CTC(in LPA):</p>
+			<input type="number" name="" id="incoming-company-ctc" class="bg-black mt-2 w-full border-b border-white focus:outline-none text-xl sm:text-3xl text-center">
+		</div>
+
+		<div class="flex items-center justify-center w-full sm:w-1/2 h-full p-8 mt-8 sm:mt-0">
+			<div class="flex flex-col items-center justify-center bg-[#f7971e] w-full sm:w-[600px] h-[400px] sm:h-[500px] rounded-[4px] relative transform hover:scale-[1.01] hover:shadow-2xl hover:border duration-200">
+				<input id="applying-database-file" type="file" accept=".xlsx" class="cursor-pointer opacity-0 h-full w-full absolute">
+				<p id="applying-file-name" class="text=black text-base sm:text-2xl">Upload applying students' data</p>
+
+				<div class="flex flex-col items-center mt-8">
+					<div id="applying-filter-options" class="hidden filter-switch flex flex-wrap justify-center items-center relative p-1 font-semibold text-white transition-colors duration-200"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="flex justify-center items-center text-white my-8">
+		<button id="filter-me-daddy" class="py-[14px] px-[24px] font-semibold border border-white rounded-[4px] focus:outline-none disbaled:bg-white hover:bg-[#f7971e] hover:text-black hover:border-black duration-300">
+			Filter Me, Daddy 😫
+		</button>
+	</div>
+
+	<div id="success-popup" class="fixed z-[31] bottom-[4px] left-0 transform -translate-x-full select-none cursor-default duration-200">
+		<span class="flex items-center bg-[#5d9e52] rounded-[4px] shadow-2xl text-white px-[20px] py-[14px]">
+			<svg class="h-[20px] w-[20px] fill-current mr-[8px]" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+				<path d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"></path>
+			</svg>
+			<span id="success-popup-txt"></span>
+		</span>
+	</div>
+	<div id="error-popup" class="fixed z-[31] bottom-[4px] left-0 transform -translate-x-full select-none cursor-default duration-200">
+		<span class="flex items-center bg-[#D32F2F] rounded-[4px] shadow-2xl text-white px-[20px] py-[14px]">
+			<svg class="h-[20px] w-[20px] fill-current mr-[8px]" focusable="false" viewBox="0 0 24 24" aria-hidden="true" style="font-size: 20px; margin-inline-end: 8px;">
+				<path d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z"></path>
+			</svg>
+			<span id="error-popup-txt"></span>
+		</span>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>
